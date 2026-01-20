@@ -1,8 +1,64 @@
 {
   "version": "1.0",
-  "last_updated": "2026-01-19T17:50:00Z",
-  "total_entries": 0,
+  "last_updated": "2026-01-20T10:00:00Z",
+  "total_entries": 5,
   "topics": ["testing", "debugging", "architecture", "code-review", "performance", "security"],
-  "projects": [],
-  "entries": []
+  "projects": ["payment-kit"],
+  "entries": [
+    {
+      "id": "ref-2026-01-19-001",
+      "date": "2026-01-19",
+      "title": "正面回答问题，不要盲目修改",
+      "summary": "debug时先追踪计算逻辑，明确说明计算过程，确认真正的bug位置后再修改",
+      "topics": ["debugging"],
+      "projects": ["payment-kit"],
+      "keywords": ["debug", "communication", "root-cause-analysis", "授权金额"],
+      "file": "by-topic/debugging.md",
+      "anchor": "2026-01-19---正面回答问题不要盲目修改"
+    },
+    {
+      "id": "ref-2026-01-19-002",
+      "date": "2026-01-19",
+      "title": "改动原有逻辑前必须说明原因",
+      "summary": "在改动原有逻辑时先向用户说明原因，获得确认后再调整",
+      "topics": ["debugging"],
+      "projects": ["payment-kit"],
+      "keywords": ["code-change", "communication", "confirmation"],
+      "file": "by-topic/debugging.md",
+      "anchor": "2026-01-19---改动原有逻辑前必须说明原因"
+    },
+    {
+      "id": "ref-2026-01-19-003",
+      "date": "2026-01-19",
+      "title": "滑点配置应该存储精确汇率而非百分比",
+      "summary": "维护min_acceptable_rate精确汇率，用户设置百分比时立即计算并保存精确汇率",
+      "topics": ["architecture"],
+      "projects": ["payment-kit"],
+      "keywords": ["slippage", "min_acceptable_rate", "汇率", "百分比", "data-modeling"],
+      "file": "by-topic/architecture.md",
+      "anchor": "2026-01-19---滑点配置应该存储精确汇率而非百分比"
+    },
+    {
+      "id": "ref-2026-01-19-004",
+      "date": "2026-01-19",
+      "title": "组件复用：滑点配置组件",
+      "summary": "抽取统一的滑点配置组件，支付页和订阅详情页复用，通过参数传入当前汇率",
+      "topics": ["architecture"],
+      "projects": ["payment-kit"],
+      "keywords": ["component", "slippage", "code-reuse"],
+      "file": "by-topic/architecture.md",
+      "anchor": "2026-01-19---组件复用滑点配置组件"
+    },
+    {
+      "id": "ref-2026-01-19-005",
+      "date": "2026-01-19",
+      "title": "资金安全：自动充值的汇率检查",
+      "summary": "自动充值需要检查汇率和滑点，约束单次充值必须能覆盖欠费额度，资金安全优先",
+      "topics": ["architecture", "security"],
+      "projects": ["payment-kit"],
+      "keywords": ["auto-topup", "credit", "slippage", "security", "delegation"],
+      "file": "by-topic/architecture.md",
+      "anchor": "2026-01-19---资金安全自动充值的汇率检查"
+    }
+  ]
 }
