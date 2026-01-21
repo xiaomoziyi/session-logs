@@ -1,7 +1,7 @@
 {
   "version": "1.0",
-  "last_updated": "2026-01-21T09:45:00Z",
-  "total_entries": 9,
+  "last_updated": "2026-01-22T00:50:00Z",
+  "total_entries": 10,
   "topics": ["testing", "debugging", "architecture", "code-review", "performance", "security"],
   "projects": ["payment-kit"],
   "entries": [
@@ -103,6 +103,17 @@
       "keywords": ["sequelize", "orm", "update", "expand", "Price.expand", "line_items", "根本原因", "防御性代码"],
       "file": "by-topic/debugging.md",
       "anchor": "2026-01-20---防御性代码不是解决方案要找根本原因"
+    },
+    {
+      "id": "ref-2026-01-22-001",
+      "date": "2026-01-22",
+      "title": "变量语义混淆导致的连锁 Bug",
+      "summary": "priceId变量语义从'选择的价格'变成'查找的key'，但lineItems的key始终是原始price_id，导致findIndex失败",
+      "topics": ["debugging"],
+      "projects": ["payment-kit"],
+      "keywords": ["variable-naming", "semantic-confusion", "upsell", "price-id", "findIndex", "impact-analysis", "数据流"],
+      "file": "by-topic/debugging.md",
+      "anchor": "2026-01-22---变量语义混淆导致的连锁-bug"
     }
   ]
 }

@@ -71,3 +71,39 @@
 **标签**: debugging, sequelize, orm, root-cause-analysis, price-expand
 
 ---
+
+## 2026-01-22 - 变量语义混淆导致的连锁 Bug
+
+**场景**: 修复 upsell 价格计算错误，经过多轮调试才找到真正的根因
+
+**问题**:
+- 第一轮：修复了 quote 创建使用原价的问题，但漏了 `findIndex` 查找逻辑
+- 第二轮：添加了 `Price.expand({ upsell: true })`，但 quote_id 仍然没更新
+- 第三轮：终于发现 `findIndex` 用错了变量
+
+**根本原因**:
+```typescript
+const priceId = item.upsell_price_id || item.price_id;  // priceId = upsell price
+// ...创建 quote 用 priceId (正确)...
+const itemIndex = updatedLineItems.findIndex((li) => li.price_id === priceId);  // 错误！
+// lineItems 的 key 是原始 price_id，不是 upsell_price_id
+```
+
+变量 `priceId` 的语义从"要使用的价格"变成了"要查找的 key"，但 lineItems 的 key 始终是原始 `price_id`。
+
+**我的错误**:
+1. **变量命名不明确**：同一个 `priceId` 变量承担了两个不同的语义
+2. **数据结构约定没有理解**：lineItems 始终以原始 price_id 为 key，这是隐式约定
+3. **修复时只看"要改的地方"**：改了 quote 创建逻辑，但没检查下游的 `findIndex`
+4. **测试场景不完整**：只测试了"直接选 upsell"，没测试"先选原价再改 upsell"
+
+**教训**:
+- **明确命名**：使用 `selectedPriceId` vs `lookupPriceId` vs `originalPriceId`
+- **画数据流图**：修改前画出 price_id → quote → lineItem → amount 的完整链路
+- **搜索变量所有使用点**：改变量赋值后，grep 所有使用该变量的地方
+- **测试边界场景**：列出组合矩阵（有/无 upsell × 首次/重试 × 不同支付方式）
+- **理解隐式约定**：数据结构的 key 是什么？是否在所有地方保持一致？
+
+**标签**: debugging, variable-naming, semantic-confusion, upsell, price-id, impact-analysis
+
+---
