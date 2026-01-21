@@ -25,6 +25,19 @@
 - 测试和验证套餐切换流程
 - 验证支付方式切换与授权金额更新
 
+### 4. Credit 自动充值场景支持
+- **充值购买场景**: 支持动态定价的 Credit 充值
+- **自动充值场景**:
+  - 前端展示汇率，支持用户设置滑点
+  - 更新授权和自动充值配置
+- **安全检查**:
+  - 创建账单前检查汇率和滑点
+  - 汇率低于滑点下限时，自动充值关闭并说明原因
+  - credit-grant 路由检查当前汇率和滑点配置
+- **约束设计**:
+  - 单次充值必须能覆盖欠费额度
+  - 不允许多次自动充值来覆盖余额（资金安全考虑）
+
 ---
 
 ## 关键技术点
@@ -41,6 +54,11 @@
    - 切换支付方式时需检查授权金额
    - 授权金额低于阈值时重新发起 delegation
 
+4. **自动充值安全机制**
+   - 放行自动充值是危险操作，必须严格检查
+   - 动态计价场景只保证单次充值覆盖余额
+   - 汇率低于滑点下限 → 自动关闭并通知用户
+
 ---
 
 ## 相关文件
@@ -48,6 +66,7 @@
 - `api/src/services/quote-service.ts` - 汇率服务和缓存
 - `api/src/routes/checkout-session/slippage.ts` - 滑点 API
 - `api/src/routes/connect/delegation.ts` - 委托授权
+- `api/src/routes/credit-grant/` - Credit 自动充值检查
 
 ---
 
@@ -55,7 +74,7 @@
 
 - [ ] 验证汇率缓存在生产环境的表现
 - [ ] 监控 rate limit 情况是否改善
-- [ ] Credit 自动充值的滑点支持
+- [ ] Credit 自动充值的完整测试验证
 
 ---
 
@@ -63,11 +82,11 @@
 
 | 会话ID | 主题 | 时间范围 |
 |--------|------|----------|
-| 7ac5c500 | 滑点配置与授权修复 | 整日 |
+| 7ac5c500 | 滑点配置、授权修复、自动充值 | 整日 |
 | 73c0593f | 汇率缓存开发 | 08:29-00:35 |
 
 ---
 
 ## 标签
 
-#payment-kit #quote #cache #slippage #authorization #delegation
+#payment-kit #quote #cache #slippage #authorization #delegation #credit #auto-topup

@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "last_updated": "2026-01-21T09:30:00Z",
-  "total_entries": 7,
+  "total_entries": 8,
   "topics": ["testing", "debugging", "architecture", "code-review", "performance", "security"],
   "projects": ["payment-kit"],
   "entries": [
@@ -79,6 +79,17 @@
       "topics": ["architecture"],
       "projects": ["payment-kit"],
       "keywords": ["delegation", "authorization", "change-payment", "connect"],
+      "file": "by-project/payment-kit.md",
+      "anchor": "2026-01-20---汇率缓存与-re-authorization-修复"
+    },
+    {
+      "id": "ref-2026-01-20-003",
+      "date": "2026-01-20",
+      "title": "Credit 自动充值安全机制",
+      "summary": "自动充值场景需检查汇率滑点，单次充值必须覆盖欠费额度，不允许多次充值覆盖余额",
+      "topics": ["architecture", "security"],
+      "projects": ["payment-kit"],
+      "keywords": ["auto-topup", "credit", "slippage", "security", "credit-grant", "动态定价"],
       "file": "by-project/payment-kit.md",
       "anchor": "2026-01-20---汇率缓存与-re-authorization-修复"
     }

@@ -32,7 +32,7 @@
 
 - [x] 授权金额计算为 100TBA 的 bug (已修复 2026-01-20)
 - [x] delegation 流程在切换支付方式时未触发 (已修复 2026-01-20)
-- [ ] Credit 自动充值的滑点支持
+- [x] Credit 自动充值的滑点支持 (已实现 2026-01-20)
 
 ---
 
@@ -54,14 +54,23 @@
    - 使用 min_acceptable_rate 计算
    - 100TBA bug 根因是未使用正确的汇率
 
+4. **Credit 自动充值安全机制**
+   - 自动充值场景需支持动态定价和滑点设置
+   - 创建账单前必须检查汇率和滑点
+   - 汇率低于滑点下限 → 自动充值关闭并通知用户
+   - credit-grant 路由需检查当前汇率和滑点配置
+   - **关键约束**: 单次充值必须能覆盖欠费额度
+   - 不允许多次自动充值来覆盖余额（放行是危险操作）
+
 ### 相关文件
 
 - `api/src/services/quote-service.ts` - 添加缓存逻辑
 - `api/src/routes/connect/delegation.ts` - 修复 re-authorization
+- `api/src/routes/credit-grant/` - Credit 自动充值检查
 
 ### 待跟进
 
 - [ ] 监控生产环境 rate limit 情况
-- [ ] Credit 自动充值的滑点支持
+- [ ] Credit 自动充值的完整测试验证
 
 ---
