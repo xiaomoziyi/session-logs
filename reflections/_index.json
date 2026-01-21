@@ -1,7 +1,7 @@
 {
   "version": "1.0",
-  "last_updated": "2026-01-20T10:00:00Z",
-  "total_entries": 5,
+  "last_updated": "2026-01-21T09:30:00Z",
+  "total_entries": 7,
   "topics": ["testing", "debugging", "architecture", "code-review", "performance", "security"],
   "projects": ["payment-kit"],
   "entries": [
@@ -59,6 +59,28 @@
       "keywords": ["auto-topup", "credit", "slippage", "security", "delegation"],
       "file": "by-topic/architecture.md",
       "anchor": "2026-01-19---资金安全自动充值的汇率检查"
+    },
+    {
+      "id": "ref-2026-01-20-001",
+      "date": "2026-01-20",
+      "title": "汇率缓存避免 rate limit",
+      "summary": "Provider调用频率过高会触发rate limit，通过环境变量控制缓存时长，默认10分钟",
+      "topics": ["architecture", "performance"],
+      "projects": ["payment-kit"],
+      "keywords": ["quote", "cache", "rate-limit", "env", "汇率"],
+      "file": "by-project/payment-kit.md",
+      "anchor": "2026-01-20---汇率缓存与-re-authorization-修复"
+    },
+    {
+      "id": "ref-2026-01-20-002",
+      "date": "2026-01-20",
+      "title": "Re-authorization 触发条件",
+      "summary": "切换支付方式时必须检查当前授权金额，低于阈值时重新发起delegation",
+      "topics": ["architecture"],
+      "projects": ["payment-kit"],
+      "keywords": ["delegation", "authorization", "change-payment", "connect"],
+      "file": "by-project/payment-kit.md",
+      "anchor": "2026-01-20---汇率缓存与-re-authorization-修复"
     }
   ]
 }
