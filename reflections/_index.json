@@ -1,7 +1,7 @@
 {
   "version": "1.0",
-  "last_updated": "2026-01-21T09:30:00Z",
-  "total_entries": 8,
+  "last_updated": "2026-01-21T09:45:00Z",
+  "total_entries": 9,
   "topics": ["testing", "debugging", "architecture", "code-review", "performance", "security"],
   "projects": ["payment-kit"],
   "entries": [
@@ -92,6 +92,17 @@
       "keywords": ["auto-topup", "credit", "slippage", "security", "credit-grant", "动态定价"],
       "file": "by-project/payment-kit.md",
       "anchor": "2026-01-20---汇率缓存与-re-authorization-修复"
+    },
+    {
+      "id": "ref-2026-01-20-004",
+      "date": "2026-01-20",
+      "title": "防御性代码不是解决方案，要找根本原因",
+      "summary": "doc.update()后Sequelize刷新实例，line_items被重置，需重新Price.expand()展开数据",
+      "topics": ["debugging"],
+      "projects": ["payment-kit"],
+      "keywords": ["sequelize", "orm", "update", "expand", "Price.expand", "line_items", "根本原因", "防御性代码"],
+      "file": "by-topic/debugging.md",
+      "anchor": "2026-01-20---防御性代码不是解决方案要找根本原因"
     }
   ]
 }
