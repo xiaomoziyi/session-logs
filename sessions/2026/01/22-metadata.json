@@ -1,0 +1,16 @@
+{
+  "date": "2026-01-22",
+  "sessions": [
+    {
+      "project": "payment-kit",
+      "file": "22-payment-kit.jsonl",
+      "message_count": 1487
+    },
+    {
+      "project": "home",
+      "file": "22-home.jsonl", 
+      "message_count": 5
+    }
+  ],
+  "total_messages": 1492
+}
