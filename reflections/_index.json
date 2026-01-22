@@ -1,119 +1,16 @@
 {
-  "version": "1.0",
-  "last_updated": "2026-01-22T00:50:00Z",
-  "total_entries": 10,
-  "topics": ["testing", "debugging", "architecture", "code-review", "performance", "security"],
-  "projects": ["payment-kit"],
+  "last_updated": "2026-01-22T00:00:00Z",
   "entries": [
     {
-      "id": "ref-2026-01-19-001",
-      "date": "2026-01-19",
-      "title": "正面回答问题，不要盲目修改",
-      "summary": "debug时先追踪计算逻辑，明确说明计算过程，确认真正的bug位置后再修改",
-      "topics": ["debugging"],
+      "id": "ref-2026-01-21-001",
+      "date": "2026-01-21",
+      "title": "动态定价滑点配置实现",
+      "summary": "为自动充值和订阅添加滑点配置支持，统一滑点计算逻辑",
+      "topics": ["architecture", "debugging"],
       "projects": ["payment-kit"],
-      "keywords": ["debug", "communication", "root-cause-analysis", "授权金额"],
-      "file": "by-topic/debugging.md",
-      "anchor": "2026-01-19---正面回答问题不要盲目修改"
-    },
-    {
-      "id": "ref-2026-01-19-002",
-      "date": "2026-01-19",
-      "title": "改动原有逻辑前必须说明原因",
-      "summary": "在改动原有逻辑时先向用户说明原因，获得确认后再调整",
-      "topics": ["debugging"],
-      "projects": ["payment-kit"],
-      "keywords": ["code-change", "communication", "confirmation"],
-      "file": "by-topic/debugging.md",
-      "anchor": "2026-01-19---改动原有逻辑前必须说明原因"
-    },
-    {
-      "id": "ref-2026-01-19-003",
-      "date": "2026-01-19",
-      "title": "滑点配置应该存储精确汇率而非百分比",
-      "summary": "维护min_acceptable_rate精确汇率，用户设置百分比时立即计算并保存精确汇率",
-      "topics": ["architecture"],
-      "projects": ["payment-kit"],
-      "keywords": ["slippage", "min_acceptable_rate", "汇率", "百分比", "data-modeling"],
-      "file": "by-topic/architecture.md",
-      "anchor": "2026-01-19---滑点配置应该存储精确汇率而非百分比"
-    },
-    {
-      "id": "ref-2026-01-19-004",
-      "date": "2026-01-19",
-      "title": "组件复用：滑点配置组件",
-      "summary": "抽取统一的滑点配置组件，支付页和订阅详情页复用，通过参数传入当前汇率",
-      "topics": ["architecture"],
-      "projects": ["payment-kit"],
-      "keywords": ["component", "slippage", "code-reuse"],
-      "file": "by-topic/architecture.md",
-      "anchor": "2026-01-19---组件复用滑点配置组件"
-    },
-    {
-      "id": "ref-2026-01-19-005",
-      "date": "2026-01-19",
-      "title": "资金安全：自动充值的汇率检查",
-      "summary": "自动充值需要检查汇率和滑点，约束单次充值必须能覆盖欠费额度，资金安全优先",
-      "topics": ["architecture", "security"],
-      "projects": ["payment-kit"],
-      "keywords": ["auto-topup", "credit", "slippage", "security", "delegation"],
-      "file": "by-topic/architecture.md",
-      "anchor": "2026-01-19---资金安全自动充值的汇率检查"
-    },
-    {
-      "id": "ref-2026-01-20-001",
-      "date": "2026-01-20",
-      "title": "汇率缓存避免 rate limit",
-      "summary": "Provider调用频率过高会触发rate limit，通过环境变量控制缓存时长，默认10分钟",
-      "topics": ["architecture", "performance"],
-      "projects": ["payment-kit"],
-      "keywords": ["quote", "cache", "rate-limit", "env", "汇率"],
+      "keywords": ["dynamic-pricing", "slippage", "auto-recharge", "subscription", "quote"],
       "file": "by-project/payment-kit.md",
-      "anchor": "2026-01-20---汇率缓存与-re-authorization-修复"
-    },
-    {
-      "id": "ref-2026-01-20-002",
-      "date": "2026-01-20",
-      "title": "Re-authorization 触发条件",
-      "summary": "切换支付方式时必须检查当前授权金额，低于阈值时重新发起delegation",
-      "topics": ["architecture"],
-      "projects": ["payment-kit"],
-      "keywords": ["delegation", "authorization", "change-payment", "connect"],
-      "file": "by-project/payment-kit.md",
-      "anchor": "2026-01-20---汇率缓存与-re-authorization-修复"
-    },
-    {
-      "id": "ref-2026-01-20-003",
-      "date": "2026-01-20",
-      "title": "Credit 自动充值安全机制",
-      "summary": "自动充值场景需检查汇率滑点，单次充值必须覆盖欠费额度，不允许多次充值覆盖余额",
-      "topics": ["architecture", "security"],
-      "projects": ["payment-kit"],
-      "keywords": ["auto-topup", "credit", "slippage", "security", "credit-grant", "动态定价"],
-      "file": "by-project/payment-kit.md",
-      "anchor": "2026-01-20---汇率缓存与-re-authorization-修复"
-    },
-    {
-      "id": "ref-2026-01-20-004",
-      "date": "2026-01-20",
-      "title": "防御性代码不是解决方案，要找根本原因",
-      "summary": "doc.update()后Sequelize刷新实例，line_items被重置，需重新Price.expand()展开数据",
-      "topics": ["debugging"],
-      "projects": ["payment-kit"],
-      "keywords": ["sequelize", "orm", "update", "expand", "Price.expand", "line_items", "根本原因", "防御性代码"],
-      "file": "by-topic/debugging.md",
-      "anchor": "2026-01-20---防御性代码不是解决方案要找根本原因"
-    },
-    {
-      "id": "ref-2026-01-22-001",
-      "date": "2026-01-22",
-      "title": "变量语义混淆导致的连锁 Bug",
-      "summary": "priceId变量语义从'选择的价格'变成'查找的key'，但lineItems的key始终是原始price_id，导致findIndex失败",
-      "topics": ["debugging"],
-      "projects": ["payment-kit"],
-      "keywords": ["variable-naming", "semantic-confusion", "upsell", "price-id", "findIndex", "impact-analysis", "数据流"],
-      "file": "by-topic/debugging.md",
-      "anchor": "2026-01-22---变量语义混淆导致的连锁-bug"
+      "anchor": "2026-01-21---动态定价滑点配置实现"
     }
   ]
 }
