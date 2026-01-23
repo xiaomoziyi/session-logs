@@ -64,3 +64,54 @@ events.on('invoice.paid', async ({ id }) => { /* ... */ });
 **标签**: architecture, events, error-handling
 
 ---
+
+## 2026-01-22 - 动态定价的边界条件处理
+
+**场景**: useDynamicPricing hook 在免费试用和按量计费场景下处理不当
+
+**问题**: 
+- trialing 订阅项目在试用期内不需要支付，但仍尝试计算动态定价
+- metered 项目在非计量周期不需要支付，但逻辑混乱
+
+**解决方案**:
+```typescript
+const isRecurringWithoutCurrentPayment = (item) => {
+  const price = item.upsell_price || item.price;
+  // trialing 或 metered 且当前周期无需支付
+  return price?.type === 'recurring' && 
+    (isTrialing || price?.recurring?.usage_type === 'metered');
+};
+```
+
+**教训**:
+- 订阅定价有多种边界条件：trialing、metered、first cycle
+- 每种场景的"当前支付金额"计算逻辑不同
+- 前端显示应与后端计算逻辑保持一致
+
+**标签**: dynamic-pricing, subscription, trialing, metered
+
+---
+
+## 2026-01-22 - Quote 生成的前置条件检查
+
+**场景**: invoice-quote.ts 为零数量项目生成 quote 导致报错
+
+**问题**: `quantity=0` 的 invoice item（如免费试用的 recurring 项目）触发 quote 生成，但 quote 服务要求 quantity > 0
+
+**解决方案**:
+```typescript
+if (item.quantity <= 0) {
+  logger.debug('Skipping quote for zero-quantity item', { priceId: item.price_id });
+  enrichedItems.push(item);
+  continue;
+}
+```
+
+**教训**:
+- Quote 生成前应检查所有必要参数
+- 零数量项目不需要定价，应提前跳过
+- 日志记录跳过原因便于调试
+
+**标签**: quote, validation, invoice
+
+---

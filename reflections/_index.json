@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-01-23T18:00:00Z",
+  "last_updated": "2026-01-23T18:30:00Z",
   "entries": [
     {
       "id": "ref-2026-01-23-001",
@@ -9,8 +9,7 @@
       "topics": ["payment", "subscription"],
       "projects": ["payment-kit"],
       "keywords": ["trial", "fast-checkout", "noPaymentRequired", "getFastCheckoutAmount"],
-      "file": "by-project/payment-kit.md",
-      "anchor": "2026-01-23---支付金额-vs-授权金额的区分"
+      "file": "by-project/payment-kit.md"
     },
     {
       "id": "ref-2026-01-23-002",
@@ -20,8 +19,7 @@
       "topics": ["architecture", "events"],
       "projects": ["payment-kit"],
       "keywords": ["events.on", "error-handling", "invoice.paid"],
-      "file": "by-project/payment-kit.md",
-      "anchor": "2026-01-23---事件监听器的错误隔离"
+      "file": "by-project/payment-kit.md"
     },
     {
       "id": "ref-2026-01-23-003",
@@ -31,8 +29,27 @@
       "topics": ["architecture", "payment"],
       "projects": ["payment-kit"],
       "keywords": ["quote", "final-freeze", "adjust-quantity"],
-      "file": "by-topic/architecture.md",
-      "anchor": "2026-01-23---final-freeze-架构下的-quote-管理"
+      "file": "by-topic/architecture.md"
+    },
+    {
+      "id": "ref-2026-01-22-001",
+      "date": "2026-01-22",
+      "title": "动态定价的边界条件处理",
+      "summary": "trialing 和 metered 场景需要特殊处理，当前周期无需支付时跳过定价计算",
+      "topics": ["dynamic-pricing", "subscription"],
+      "projects": ["payment-kit"],
+      "keywords": ["trialing", "metered", "useDynamicPricing", "isRecurringWithoutCurrentPayment"],
+      "file": "by-project/payment-kit.md"
+    },
+    {
+      "id": "ref-2026-01-22-002",
+      "date": "2026-01-22",
+      "title": "Quote 生成的前置条件检查",
+      "summary": "零数量项目不需要定价，应在 quote 生成前检查并跳过",
+      "topics": ["quote", "validation"],
+      "projects": ["payment-kit"],
+      "keywords": ["quantity", "invoice-quote", "validation"],
+      "file": "by-project/payment-kit.md"
     }
   ]
 }
