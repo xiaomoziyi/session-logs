@@ -67,3 +67,21 @@
 **标签**: architecture, security, payment, auto-topup
 
 ---
+
+## 2026-01-23 - Final Freeze 架构下的 Quote 管理
+
+**场景**: payment-kit 动态定价 quote 功能
+
+**要点**:
+1. Quote 仅在 Submit 时创建，不在 preview 阶段
+2. adjust-quantity 不应保留 quote 数据，价格由前端实时计算
+3. Quote 状态流转: pending → used → paid
+
+**相关代码**:
+- `checkout-sessions.ts`: adjust-quantity 清除 quote 字段
+- `shared.ts`: ensureInvoiceForCheckout 传递 quote_id
+- `invoice.ts`: invoice.paid 事件标记 quotes
+
+**标签**: payment-kit, quote, final-freeze
+
+---

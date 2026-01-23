@@ -107,3 +107,18 @@ const itemIndex = updatedLineItems.findIndex((li) => li.price_id === priceId);  
 **标签**: debugging, variable-naming, semantic-confusion, upsell, price-id, impact-analysis
 
 ---
+
+## 2026-01-23 - 免费试用快捷支付显示问题排查
+
+**场景**: 免费试用订阅显示 "确认支付 2.22 TBA" 而非直接通过
+
+**排查路径**:
+1. 检查 `getFastCheckoutAmount` 返回值 → 发现返回 `total + renew`
+2. 对比 `getCheckoutAmount` → 返回 `{ total, renew }` 分开
+3. 追踪前端 fastPayInfo 使用 → 发现直接展示授权金额
+
+**根因**: 混淆了"当前支付金额"和"授权金额"
+
+**标签**: payment, debugging, subscription
+
+---

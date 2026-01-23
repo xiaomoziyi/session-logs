@@ -1,16 +1,38 @@
 {
-  "last_updated": "2026-01-22T00:00:00Z",
+  "last_updated": "2026-01-23T18:00:00Z",
   "entries": [
     {
-      "id": "ref-2026-01-21-001",
-      "date": "2026-01-21",
-      "title": "动态定价滑点配置实现",
-      "summary": "为自动充值和订阅添加滑点配置支持，统一滑点计算逻辑",
-      "topics": ["architecture", "debugging"],
+      "id": "ref-2026-01-23-001",
+      "date": "2026-01-23",
+      "title": "支付金额 vs 授权金额的区分",
+      "summary": "currentPaymentTotal 用于判断是否需要支付，fastCheckoutAmount 用于检查委托额度",
+      "topics": ["payment", "subscription"],
       "projects": ["payment-kit"],
-      "keywords": ["dynamic-pricing", "slippage", "auto-recharge", "subscription", "quote"],
+      "keywords": ["trial", "fast-checkout", "noPaymentRequired", "getFastCheckoutAmount"],
       "file": "by-project/payment-kit.md",
-      "anchor": "2026-01-21---动态定价滑点配置实现"
+      "anchor": "2026-01-23---支付金额-vs-授权金额的区分"
+    },
+    {
+      "id": "ref-2026-01-23-002",
+      "date": "2026-01-23",
+      "title": "事件监听器的错误隔离",
+      "summary": "相互独立的逻辑应使用独立的事件监听器，避免级联错误",
+      "topics": ["architecture", "events"],
+      "projects": ["payment-kit"],
+      "keywords": ["events.on", "error-handling", "invoice.paid"],
+      "file": "by-project/payment-kit.md",
+      "anchor": "2026-01-23---事件监听器的错误隔离"
+    },
+    {
+      "id": "ref-2026-01-23-003",
+      "date": "2026-01-23",
+      "title": "Final Freeze 架构下的 Quote 管理",
+      "summary": "Quote 仅在 Submit 时创建，adjust-quantity 不保留 quote 数据",
+      "topics": ["architecture", "payment"],
+      "projects": ["payment-kit"],
+      "keywords": ["quote", "final-freeze", "adjust-quantity"],
+      "file": "by-topic/architecture.md",
+      "anchor": "2026-01-23---final-freeze-架构下的-quote-管理"
     }
   ]
 }
