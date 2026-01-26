@@ -67,14 +67,25 @@
 
 ## 已完成（原明日待办）
 
-- [x] **排查完成** invoice `in_7HwruSVGHlCQOeekxQUf5utC` 未创建 payment_intent 的根因
-  - 检查了 finalize 触发收款的代码路径
-  - 确认了 default_payment_method 有效性
-- [x] **work-session 强化完成**
-  - 实现了自动检测会话时间（定时任务每 2 小时）
-  - 支持增量更新当日总结
-  - 自动推送到 GitHub
-- [x] **验证完成** ABT_LOG_TO_FILE 参数功能
+### 1. Invoice 未创建 payment_intent 根因排查 ✅
+- **问题**: invoice `in_7HwruSVGHlCQOeekxQUf5utC` 状态 uncollectible，payment_intent_id 为空，attempt_count=0
+- **排查路径**: 使用 IDD 方法分析 finalize 触发收款的代码路径
+- **解决**: 确认了 default_payment_method 有效性问题
+
+### 2. Work-session 强化 ✅
+- **问题**: 用户经常忘记调用 workstart/workend，没有工作总结
+- **解决方案**: 实现定时自动总结系统
+  - 创建 `~/.claude/hooks/auto-daily-summary.sh` 脚本
+  - 配置 LaunchAgent 每 2 小时自动触发
+  - 脚本调用 Claude CLI (`claude -p`) 分析 session 数据生成有深度的总结
+  - 总结包含：完成任务、关键决策、反思要点、明日待办
+  - 自动保存到 `summaries/{year}/{month}/{day}-summary.md`
+  - 自动 git push 到 GitHub 仓库
+- **核心代码**: LaunchAgent 定时 → Python 提取 session 元数据 → Claude 生成分析 → Git 推送
+
+### 3. ABT_LOG_TO_FILE 参数验证 ✅
+- **问题**: blocklet dev 是否有参数保留本地日志
+- **验证**: 确认了 ABT_LOG_TO_FILE 参数功能
 
 ## 明日待办
 
