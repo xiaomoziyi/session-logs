@@ -1,5 +1,27 @@
 # Payment Kit 项目反思
 
+## 2026-01-26 - 汇率滑点导致 Invoice 收款失败
+
+**场景**: 订阅账单 `in_7HwruSVGHlCQOeekxQUf5utC` 状态为 uncollectible，payment_intent_id 为空，attempt_count=0
+
+**问题**: Invoice finalize 后未触发收款流程，根本没有尝试创建 payment_intent
+
+**根因**: 当前汇率低于用户设置的滑点下限 (min_acceptable_rate)，系统主动跳过收款以保护用户
+
+**解决方案**:
+1. **提前通知**: 在汇率接近滑点下限时提前通知用户
+2. **说明原因**: Invoice 失败时明确告知"汇率超出可接受范围"
+3. **手动付款**: 支持用户在汇率恢复后手动触发付款
+
+**教训**:
+- 滑点保护是双刃剑：保护用户但也可能导致账单失败
+- 失败原因应该清晰可见，而非静默跳过
+- 给用户留补救路径（手动付款）比完全拒绝更友好
+
+**标签**: invoice, slippage, payment-failure, user-experience
+
+---
+
 ## 2026-01-21 - 动态定价滑点配置实现
 
 **场景**: 为自动充值和订阅功能添加滑点配置支持

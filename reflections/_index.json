@@ -1,6 +1,26 @@
 {
-  "last_updated": "2026-01-23T18:30:00Z",
+  "last_updated": "2026-01-26T15:00:00Z",
   "entries": [
+    {
+      "id": "ref-2026-01-26-001",
+      "date": "2026-01-26",
+      "title": "汇率滑点导致 Invoice 收款失败",
+      "summary": "汇率低于滑点下限时系统跳过收款，需提前通知、说明原因、支持手动付款",
+      "topics": ["payment", "invoice", "slippage"],
+      "projects": ["payment-kit"],
+      "keywords": ["invoice", "slippage", "payment-failure", "min_acceptable_rate", "uncollectible"],
+      "file": "by-project/payment-kit.md"
+    },
+    {
+      "id": "ref-2026-01-26-002",
+      "date": "2026-01-26",
+      "title": "自动化优于手动",
+      "summary": "定时任务 + AI 分析实现自动工作总结，工具应适应用户而非相反",
+      "topics": ["workflow", "automation"],
+      "projects": ["claude-code"],
+      "keywords": ["launchagent", "automation", "work-session", "定时任务"],
+      "file": "by-topic/workflow.md"
+    },
     {
       "id": "ref-2026-01-23-001",
       "date": "2026-01-23",
