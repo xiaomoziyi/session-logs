@@ -69,8 +69,11 @@
 
 ### 1. Invoice 未创建 payment_intent 根因排查 ✅
 - **问题**: invoice `in_7HwruSVGHlCQOeekxQUf5utC` 状态 uncollectible，payment_intent_id 为空，attempt_count=0
-- **排查路径**: 使用 IDD 方法分析 finalize 触发收款的代码路径
-- **解决**: 确认了 default_payment_method 有效性问题
+- **根因**: 汇率低于滑点下限，导致收款流程未触发
+- **解决方案**: Invoice 相关优化
+  - 提前通知用户汇率变动风险
+  - 说明账单失败原因（汇率滑点）
+  - 支持用户手动付款
 
 ### 2. Work-session 强化 ✅
 - **问题**: 用户经常忘记调用 workstart/workend，没有工作总结
@@ -85,7 +88,7 @@
 
 ### 3. ABT_LOG_TO_FILE 参数验证 ✅
 - **问题**: blocklet dev 是否有参数保留本地日志
-- **验证**: 确认了 ABT_LOG_TO_FILE 参数功能
+- **解决**: 在 env 中添加 `ABT_LOG_TO_FILE=true` 即可保存 dev 日志
 
 ## 明日待办
 
