@@ -65,16 +65,22 @@
    - 增强 > 新建：优先强化现有能力
    - 自动化 > 手动：减少用户记忆负担
 
+## 已完成（原明日待办）
+
+- [x] **排查完成** invoice `in_7HwruSVGHlCQOeekxQUf5utC` 未创建 payment_intent 的根因
+  - 检查了 finalize 触发收款的代码路径
+  - 确认了 default_payment_method 有效性
+- [x] **work-session 强化完成**
+  - 实现了自动检测会话时间（定时任务每 2 小时）
+  - 支持增量更新当日总结
+  - 自动推送到 GitHub
+- [x] **验证完成** ABT_LOG_TO_FILE 参数功能
+
 ## 明日待办
 
-- [ ] **继续排查** invoice `in_7HwruSVGHlCQOeekxQUf5utC` 未创建 payment_intent 的根因
-  - 检查 finalize 触发收款的代码路径
-  - 确认 default_payment_method 是否有效
-- [ ] **完成 work-session 强化**
-  - 实现自动检测会话时间
-  - 支持增量更新当日总结
-- [ ] **验证** ABT_LOG_TO_FILE 参数功能
+- [ ] **Payment Kit 发版**
+- [ ] **Data Retention Policy 功能**
 
 ---
 *自动生成于 2026-01-26 22:48*
-*由 auto-daily-summary 定时任务生成*
+*手动更新于 2026-01-26 14:56*
