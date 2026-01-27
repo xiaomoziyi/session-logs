@@ -1,6 +1,46 @@
 {
-  "last_updated": "2026-01-26T15:00:00Z",
+  "last_updated": "2026-01-27T10:00:00Z",
   "entries": [
+    {
+      "id": "ref-2026-01-26-claude-001",
+      "date": "2026-01-26",
+      "title": "Claude 自我反思 - 第一版方案质量不足",
+      "summary": "先对标已有格式再设计，不要重新发明轮子",
+      "topics": ["claude-self", "quality"],
+      "projects": ["claude-code"],
+      "keywords": ["方案设计", "对标", "auto-checkout", "daily-summary"],
+      "file": "by-topic/claude-self.md"
+    },
+    {
+      "id": "ref-2026-01-26-claude-002",
+      "date": "2026-01-26",
+      "title": "Claude 自我反思 - 主动性不足",
+      "summary": "作为助手应主动发现问题，而不是等用户来问",
+      "topics": ["claude-self", "proactiveness"],
+      "projects": ["claude-code"],
+      "keywords": ["主动性", "反思提醒", "AI TODO"],
+      "file": "by-topic/claude-self.md"
+    },
+    {
+      "id": "ref-2026-01-26-claude-003",
+      "date": "2026-01-26",
+      "title": "Claude 自我反思 - 过度设计倾向",
+      "summary": "增强 > 新建，简洁优于复杂",
+      "topics": ["claude-self", "architecture"],
+      "projects": ["claude-code"],
+      "keywords": ["过度设计", "增强优先", "work-session"],
+      "file": "by-topic/claude-self.md"
+    },
+    {
+      "id": "ref-2026-01-26-claude-004",
+      "date": "2026-01-26",
+      "title": "Claude 自我反思 - 评价只看用户忘了自己",
+      "summary": "合作是双向的，反思也应该是双向的",
+      "topics": ["claude-self", "collaboration"],
+      "projects": ["claude-code"],
+      "keywords": ["双向反思", "工作评价", "合作"],
+      "file": "by-topic/claude-self.md"
+    },
     {
       "id": "ref-2026-01-26-001",
       "date": "2026-01-26",
