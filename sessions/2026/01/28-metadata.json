@@ -1,0 +1,9 @@
+{
+  "date": "2026-01-28",
+  "sessions": [
+    {"project": "payment-kit", "message_count": 522},
+    {"project": "payment-kit-core", "message_count": 7337},
+    {"project": "home", "message_count": 53}
+  ],
+  "total_messages": 7912
+}
