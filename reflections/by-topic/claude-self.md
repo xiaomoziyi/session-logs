@@ -99,6 +99,42 @@
 
 ---
 
+## 2026-01-28 - 修改代码前未理解原设计意图
+
+**场景**: 修复 Stripe 支付 submit 后 discount_amount 未记录到数据库
+
+**问题**:
+1. 第一次修复：直接在 `createDiscountRecordsForCheckout` 中改用 `total_details.amount_discount`，没有理解原设计为什么用 `discounts[0].discount_amount`
+2. 没有考虑多个 discounts 的场景 — 每个 discount 需要独立的 discount_amount
+3. 修改前没有充分理解数据流和设计意图
+
+**根因**:
+- 只看到问题表象（discount_amount 为空）就改
+- 没有追问"原来为什么这样设计"
+- 没有理解完整的数据流：apply-promotion → recalculate-promotion → calculateAndUpdateAmount → createDiscountRecordsForCheckout
+
+**用户指导的正确方向**:
+1. 先理解原设计：`discounts[0].discount_amount` 支持多个 discounts 独立计费
+2. 理解问题本质：`recalculate-promotion` 故意清空是因为前端动态计算，但 submit 时需要重新计算并保存
+3. 在数据源头（`calculateAndUpdateAmount`）回写计算结果，而不是在消费端改读取逻辑
+
+**正确的架构思路**:
+```
+绑定 → 前端动态展示 → Submit 时最终计算并保存
+```
+
+**改进**:
+1. 修改代码前必须理解"为什么原来这样设计"
+2. 不要只看到问题表象就改，要理解完整的数据流
+3. 在源头修复，而不是在消费端打补丁
+
+**教训**:
+- "为什么"比"怎么改"更重要
+- 数据流理解不清就动手改代码，会越改越乱
+- Submit 时重新计算是正确的架构思路
+
+---
+
 ## Claude 核心改进方向
 
 1. **第一版方案质量** — 先对标，再设计
@@ -106,6 +142,7 @@
 3. **简洁原则** — 增强 > 新建，避免过度设计
 4. **双向反思** — 评价用户时也评价自己
 5. **架构审查** — 修复问题时主动检查相关模块的使用和设计
+6. **理解原设计** — 修改前必须理解"为什么原来这样设计"，理解完整数据流
 
 ---
 

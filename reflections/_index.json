@@ -1,6 +1,16 @@
 {
-  "last_updated": "2026-01-27T16:30:00Z",
+  "last_updated": "2026-01-28T10:00:00Z",
   "entries": [
+    {
+      "id": "ref-2026-01-28-claude-001",
+      "date": "2026-01-28",
+      "title": "Claude 自我反思 - 修改代码前未理解原设计意图",
+      "summary": "修改代码前必须理解'为什么原来这样设计'，理解完整数据流",
+      "topics": ["claude-self", "debugging", "architecture"],
+      "projects": ["payment-kit"],
+      "keywords": ["原设计", "数据流", "discount_amount", "calculateAndUpdateAmount", "源头修复"],
+      "file": "by-topic/claude-self.md"
+    },
     {
       "id": "ref-2026-01-27-claude-001",
       "date": "2026-01-27",
